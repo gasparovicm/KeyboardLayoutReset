@@ -1,5 +1,5 @@
 @echo off
-rem Builds bin\LayoutReset.exe with the MSVC compiler.
+rem Builds bin\KeyboardLayoutReset.exe with the MSVC compiler.
 setlocal
 set "VSWHERE=%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
 for /f "usebackq delims=" %%i in (`"%VSWHERE%" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do set "VSDIR=%%i"
@@ -14,6 +14,16 @@ cd /d "%~dp0"
 if not exist bin mkdir bin
 if not exist obj mkdir obj
 rc /nologo /fo obj\app.res src\app.rc || exit /b 1
-cl /nologo /O2 /W4 /MT /Foobj\ /Fe:bin\LayoutReset.exe src\main.c obj\app.res ^
+cl /nologo /O2 /W4 /MT /Foobj\ /Fe:bin\KeyboardLayoutReset.exe src\main.c obj\app.res ^
    /link /SUBSYSTEM:WINDOWS user32.lib shell32.lib || exit /b 1
-echo Built bin\LayoutReset.exe
+echo Built bin\KeyboardLayoutReset.exe
+
+rem Installer: needs Inno Setup 6 (https://jrsoftware.org/isinfo.php).
+set "ISCC=%ProgramFiles(x86)%\Inno Setup 6\ISCC.exe"
+if not exist "%ISCC%" set "ISCC=%LOCALAPPDATA%\Programs\Inno Setup 6\ISCC.exe"
+if not exist "%ISCC%" (
+  echo Inno Setup 6 not found, skipping the installer.
+  exit /b 0
+)
+"%ISCC%" /Q installer\KeyboardLayoutReset.iss || exit /b 1
+echo Built installer in dist\

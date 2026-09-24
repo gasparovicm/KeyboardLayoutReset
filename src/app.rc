@@ -1,18 +1,19 @@
-// Resource id 1 is the tray icon; the exe falls back to the default
-// application icon when no icon file is added here.
-// 1 ICON "app.ico"
+// Resource id 1 is both the exe icon and the tray icon.
+// Regenerate app.ico with tools\make-icon.ps1.
+1 ICON "app.ico"
 
 1 VERSIONINFO
-FILEVERSION 0,1,0,0
-PRODUCTVERSION 0,1,0,0
+FILEVERSION 0,3,0,0
+PRODUCTVERSION 0,3,0,0
 BEGIN
   BLOCK "StringFileInfo"
   BEGIN
     BLOCK "040904b0"
     BEGIN
-      VALUE "FileDescription", "LayoutReset - switch keyboard back to English when idle"
-      VALUE "ProductName", "LayoutReset"
-      VALUE "FileVersion", "0.1.0"
+      VALUE "FileDescription", "KeyboardLayoutReset - switch keyboard back to a default layout when idle"
+      VALUE "ProductName", "KeyboardLayoutReset"
+      VALUE "FileVersion", "0.3.0"
+      VALUE "ProductVersion", "0.3.0"
     END
   END
   BLOCK "VarFileInfo"

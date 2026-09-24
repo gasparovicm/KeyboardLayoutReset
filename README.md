@@ -1,73 +1,142 @@
-# LayoutReset
+# KeyboardLayoutReset
 
-A small Windows tray app that switches the keyboard layout back to **English**
-after you stop using the computer for a while.
+A small Windows tray app that switches the keyboard layout back to **English**,
+or another default keyboard you choose, after you stop using the computer for
+a while.
 
 If you often type in a second language (for example Slovak), you can come back
 to the PC, type a password or a command, and find that the layout is still
-wrong. LayoutReset fixes that. Once there has been no keyboard or mouse input
-for a minute, it switches the active window back to English. It never switches
-while you are typing.
+wrong. KeyboardLayoutReset fixes that. Once there has been no keyboard or mouse input
+for a minute, it switches the active window back to your default keyboard. It
+never switches while you are typing.
 
 It is written in plain C with the Win32 API. It has no dependencies or runtime
-and builds to one ~140 KB `.exe`.
+and builds to one ~150 KB `.exe`.
+
+## Install
+
+Download `KeyboardLayoutReset-Setup-x.y.z.exe` (or build it, see [Building](#building))
+and run it. Administrator rights are not needed; it installs for your user only
+into `%LOCALAPPDATA%\Programs\KeyboardLayoutReset`.
+
+The setup asks for:
+
+- **Default keyboard**: the layout to switch back to. The default is `en`.
+- **Idle time**: seconds without input before switching. The default is `60`.
+- **Start when I sign in**: adds a shortcut to your Startup folder.
+
+To change the settings later, run the setup again. It remembers your previous
+choices and restarts the app with the new ones. Uninstall it from
+_Settings → Apps → Installed apps_.
+
+Silent install, for scripts:
+
+```
+KeyboardLayoutReset-Setup-0.3.0.exe /SILENT /LAYOUT=en-US /IDLE=60
+```
 
 ## How it works
 
 - Every few seconds (`--check`, default 5 s), it asks Windows how long it has
   been since the last input (`GetLastInputInfo`).
 - Once the idle time reaches `--idle` seconds (default 60) and the focused
-  window is not using English, it posts `WM_INPUTLANGCHANGEREQUEST` with the
-  English layout to that window.
-- It uses the first English layout already in your language list, so it never
-  adds a layout you don't have. `--layout` picks a specific one instead.
-- A tray icon offers **Switch to English now**, **Pause** and **Exit**. Only one
-  instance runs at a time.
+  window is not using the default keyboard, it posts
+  `WM_INPUTLANGCHANGEREQUEST` with that layout to the window.
+- It prefers a layout already in your language list, so it doesn't add
+  layouts you don't have.
+- The tray icon shows the default keyboard and idle time on hover. Its menu has
+  **Switch to … now**, **Pause** and **Exit**. Only one copy runs at a time.
 
-## Usage
+## Options
+
+The installer passes these for you. You can also run the exe directly with
+them.
 
 ```
-LayoutReset.exe [--idle SECONDS] [--check SECONDS] [--layout KLID]
+KeyboardLayoutReset.exe [--layout LAYOUT] [--idle SECONDS] [--check SECONDS]
 ```
 
-| Option     | Default | Meaning                                                        |
-| ---------- | ------- | -------------------------------------------------------------- |
-| `--idle`   | `60`    | Seconds without input before switching. `0` = don't wait.      |
-| `--check`  | `5`     | How often to check, in seconds.                                |
-| `--layout` | auto    | Keyboard layout id, e.g. `00000409` (US) or `00000809` (UK).   |
+| Option     | Default | Meaning                                                                                                       |
+| ---------- | ------- | ------------------------------------------------------------------------------------------------------------- |
+| `--layout` | `en`    | Default keyboard to switch back to (see below).                                                               |
+| `--idle`   | `60`    | Seconds without keyboard or mouse input before switching. `0` means switch on every check, even while typing. |
+| `--check`  | `5`     | How often to check, in seconds.                                                                               |
+| `--help`   |         | Show the options.                                                                                             |
+
+`--layout` accepts:
+
+- a language name, such as `en` or `de`. It uses the first installed keyboard
+  of that language.
+- a locale name, such as `en-US`, `en-GB`, `sk-SK` or `cs-CZ`. It uses the
+  installed keyboard for that locale, or loads the standard one for it.
+- a layout id, such as `00000409` (US) or `00000809` (UK). Use this for
+  variants like US-International (`00020409`).
+
+An invalid value shows an error message and the app does not start.
 
 Examples:
 
 ```
-LayoutReset.exe                          # English after 1 minute idle
-LayoutReset.exe --idle 0 --check 60      # force English every minute, even while typing
-LayoutReset.exe --idle 120 --layout 00000809
+KeyboardLayoutReset.exe                            # English after 1 minute idle
+KeyboardLayoutReset.exe --layout en-GB --idle 120  # UK English after 2 minutes idle
+KeyboardLayoutReset.exe --layout sk-SK             # Slovak is the default instead
+KeyboardLayoutReset.exe --idle 0 --check 60        # force English every minute, even while typing
 ```
 
-### Start with Windows
+## Administrator windows
 
-Press `Win+R`, type `shell:startup`, and put a shortcut to `LayoutReset.exe`
-(with any options) in that folder.
+Windows does not let normal programs send input messages to programs running
+**as administrator** (for example an elevated terminal, Task Manager, or an
+installer). This protection is called User Interface Privilege Isolation
+(UIPI). KeyboardLayoutReset runs as a normal program, so when such a window has focus:
+
+- its keyboard layout is **not** switched, and nothing else happens;
+- as soon as you focus a normal window, switching works again.
+
+With the default Windows setting of one input method for all windows, the
+layout is shared anyway. It gets switched the next time a normal window is
+focused while you are idle.
+
+If you do want elevated windows switched too, run KeyboardLayoutReset as administrator.
+For example, create a Task Scheduler task that starts it at sign-in with
+_Run with highest privileges_. The installer does not do this, because a tray
+app running as administrator is usually not worth the risk.
+
+## Other limitations
+
+- If _Settings → Time & language → Typing → Advanced keyboard settings → "Let me
+  use a different input method for each app window"_ is on, only the focused
+  window is switched. By default, Windows uses one layout for all windows.
+- Setup and the app are not code-signed. Windows SmartScreen may warn on first
+  run ("More info → Run anyway"). New unsigned installers can also trigger
+  Microsoft Defender false positives. If that happens, report it at
+  <https://www.microsoft.com/wdsi/filesubmission>.
 
 ## Building
 
-You need Visual Studio 2022 or later with the **Desktop development with C++**
-workload. Then run:
+You need:
+
+- Visual Studio 2022 or later with the **Desktop development with C++**
+  workload.
+- [Inno Setup 6](https://jrsoftware.org/isinfo.php) for the installer
+  (optional).
+
+Then run:
 
 ```
 build.bat
 ```
 
-The output is `bin\LayoutReset.exe`, built with the static runtime (`/MT`).
+This produces `bin\KeyboardLayoutReset.exe`, built with the static runtime (`/MT`), and,
+if Inno Setup is installed, `dist\KeyboardLayoutReset-Setup-<version>.exe`. The version
+comes from `src\app.rc`.
 
-## Limitations
-
-- Windows blocks messages from normal apps to elevated (administrator) windows
-  (UIPI), so those keep their layout. Running LayoutReset as administrator
-  removes this limit.
-- If *Settings → Time & language → Typing → Advanced keyboard settings → "Let me
-  use a different input method for each app window"* is on, only the focused
-  window is switched. By default, Windows uses one layout for all windows.
+| Path                        | What it is                |
+| --------------------------- | ------------------------- |
+| `src\main.c`                | The app                   |
+| `src\app.rc`, `src\app.ico` | Version info and icon     |
+| `installer\KeyboardLayoutReset.iss` | Inno Setup script         |
+| `tools\make-icon.ps1`       | Regenerates `src\app.ico` |
 
 ## Alternatives
 
@@ -98,4 +167,4 @@ Existing tools that do something similar:
   AutoHotkey script that shows the layout under the caret and cycles layouts
   macOS-style.
 
-LayoutReset exists to be tiny, open, and do only this one job.
+KeyboardLayoutReset exists to be tiny, open, and do only this one job.

@@ -4,3 +4,4 @@ obj/
 *.res
 *.pdb
 .vs/
+dist/
