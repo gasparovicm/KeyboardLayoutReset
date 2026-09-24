@@ -15,7 +15,9 @@ and builds to one ~150 KB `.exe`.
 
 ## Install
 
-Download `KeyboardLayoutReset-Setup-x.y.z.exe` (or build it, see [Building](#building))
+Download `KeyboardLayoutReset-Setup-x.y.z.exe` from
+[Releases](https://github.com/gasparovicm/KeyboardLayoutReset/releases) (or
+build it, see [Building](#building))
 and run it. Administrator rights are not needed; it installs for your user only
 into `%LOCALAPPDATA%\Programs\KeyboardLayoutReset`.
 
@@ -181,10 +183,9 @@ The Store version works without the installer:
   the app is opened once, and it can be switched off in _Task Manager → Startup
   apps_.
 
-Before the first upload, replace the three `PLACEHOLDER` values in
-`packaging\AppxManifest.xml` with the ones from Partner Center (_Apps and games
-→ KeyboardLayoutReset → Product identity_). Until then, the build prints a
-warning.
+The package identity in `packaging\AppxManifest.xml` comes from Partner Center
+(_Apps and games → KeyboardLayoutReset → Product identity_) and must match it
+exactly.
 
 | Path                                | What it is                     |
 | ----------------------------------- | ------------------------------ |
@@ -226,3 +227,12 @@ Existing tools that do something similar:
   macOS-style.
 
 KeyboardLayoutReset exists to be tiny, open, and do only this one job.
+
+## Privacy
+
+The app collects no data and never connects to the internet. See
+[PRIVACY.md](PRIVACY.md).
+
+## License
+
+[MIT](LICENSE) © 2026 Martin Gašparovič
