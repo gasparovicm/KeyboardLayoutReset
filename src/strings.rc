@@ -1,0 +1,448 @@
+// UI text for the tray menu and messages. main.c (pick_ui_language) uses the
+// block matching the Windows display language, else English (US).
+// Keep the %s / %lu placeholders when translating. Saved as UTF-16 because
+// rc.exe misreads some UTF-8 text even with #pragma code_page(65001).
+#include <winres.h>
+#include "resource.h"
+
+// en
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Switch to %s now"
+  IDS_DEFAULT_KEYBOARD "Default keyboard"
+  IDS_IDLE_TIME        "Idle time"
+  IDS_PAUSE            "Pause"
+  IDS_EXIT             "Exit"
+  IDS_ACTIVE           "active"
+  IDS_PAUSED           "paused"
+  IDS_SECONDS          "%lu s"
+  IDS_MINUTES          "%lu min"
+  IDS_CUSTOM           "%s (custom)"
+  IDS_NO_LAYOUT        "No keyboard layout to switch to was found."
+END
+
+// bg
+LANGUAGE LANG_BULGARIAN, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Превключи на %s сега"
+  IDS_DEFAULT_KEYBOARD "Клавиатура по подразбиране"
+  IDS_IDLE_TIME        "Време на бездействие"
+  IDS_PAUSE            "Пауза"
+  IDS_EXIT             "Изход"
+  IDS_ACTIVE           "активно"
+  IDS_PAUSED           "на пауза"
+  IDS_SECONDS          "%lu с"
+  IDS_MINUTES          "%lu мин"
+  IDS_CUSTOM           "%s (персонализирано)"
+  IDS_NO_LAYOUT        "Не е намерена клавиатурна подредба за превключване."
+END
+
+// cs
+LANGUAGE LANG_CZECH, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Přepnout nyní na %s"
+  IDS_DEFAULT_KEYBOARD "Výchozí klávesnice"
+  IDS_IDLE_TIME        "Doba nečinnosti"
+  IDS_PAUSE            "Pozastavit"
+  IDS_EXIT             "Ukončit"
+  IDS_ACTIVE           "aktivní"
+  IDS_PAUSED           "pozastaveno"
+  IDS_SECONDS          "%lu s"
+  IDS_MINUTES          "%lu min"
+  IDS_CUSTOM           "%s (vlastní)"
+  IDS_NO_LAYOUT        "Nebylo nalezeno rozložení klávesnice, na které lze přepnout."
+END
+
+// da
+LANGUAGE LANG_DANISH, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Skift til %s nu"
+  IDS_DEFAULT_KEYBOARD "Standardtastatur"
+  IDS_IDLE_TIME        "Inaktivitetstid"
+  IDS_PAUSE            "Pause"
+  IDS_EXIT             "Afslut"
+  IDS_ACTIVE           "aktiv"
+  IDS_PAUSED           "sat på pause"
+  IDS_SECONDS          "%lu s"
+  IDS_MINUTES          "%lu min"
+  IDS_CUSTOM           "%s (brugerdefineret)"
+  IDS_NO_LAYOUT        "Der blev ikke fundet noget tastaturlayout at skifte til."
+END
+
+// de
+LANGUAGE LANG_GERMAN, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Jetzt zu %s wechseln"
+  IDS_DEFAULT_KEYBOARD "Standardtastatur"
+  IDS_IDLE_TIME        "Leerlaufzeit"
+  IDS_PAUSE            "Pause"
+  IDS_EXIT             "Beenden"
+  IDS_ACTIVE           "aktiv"
+  IDS_PAUSED           "pausiert"
+  IDS_SECONDS          "%lu s"
+  IDS_MINUTES          "%lu min"
+  IDS_CUSTOM           "%s (benutzerdefiniert)"
+  IDS_NO_LAYOUT        "Es wurde kein Tastaturlayout zum Wechseln gefunden."
+END
+
+// el
+LANGUAGE LANG_GREEK, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Εναλλαγή σε %s τώρα"
+  IDS_DEFAULT_KEYBOARD "Προεπιλεγμένο πληκτρολόγιο"
+  IDS_IDLE_TIME        "Χρόνος αδράνειας"
+  IDS_PAUSE            "Παύση"
+  IDS_EXIT             "Έξοδος"
+  IDS_ACTIVE           "ενεργό"
+  IDS_PAUSED           "σε παύση"
+  IDS_SECONDS          "%lu δευτ."
+  IDS_MINUTES          "%lu λεπ."
+  IDS_CUSTOM           "%s (προσαρμοσμένο)"
+  IDS_NO_LAYOUT        "Δεν βρέθηκε διάταξη πληκτρολογίου για εναλλαγή."
+END
+
+// es
+LANGUAGE LANG_SPANISH, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Cambiar a %s ahora"
+  IDS_DEFAULT_KEYBOARD "Teclado predeterminado"
+  IDS_IDLE_TIME        "Tiempo de inactividad"
+  IDS_PAUSE            "Pausar"
+  IDS_EXIT             "Salir"
+  IDS_ACTIVE           "activo"
+  IDS_PAUSED           "en pausa"
+  IDS_SECONDS          "%lu s"
+  IDS_MINUTES          "%lu min"
+  IDS_CUSTOM           "%s (personalizado)"
+  IDS_NO_LAYOUT        "No se encontró ninguna distribución de teclado a la que cambiar."
+END
+
+// et
+LANGUAGE LANG_ESTONIAN, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Lülita kohe ümber: %s"
+  IDS_DEFAULT_KEYBOARD "Vaikeklaviatuur"
+  IDS_IDLE_TIME        "Jõudeoleku aeg"
+  IDS_PAUSE            "Peata"
+  IDS_EXIT             "Välju"
+  IDS_ACTIVE           "aktiivne"
+  IDS_PAUSED           "peatatud"
+  IDS_SECONDS          "%lu s"
+  IDS_MINUTES          "%lu min"
+  IDS_CUSTOM           "%s (kohandatud)"
+  IDS_NO_LAYOUT        "Ühtegi klaviatuuripaigutust, millele ümber lülituda, ei leitud."
+END
+
+// fi
+LANGUAGE LANG_FINNISH, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Vaihda nyt: %s"
+  IDS_DEFAULT_KEYBOARD "Oletusnäppäimistö"
+  IDS_IDLE_TIME        "Käyttämättömyysaika"
+  IDS_PAUSE            "Keskeytä"
+  IDS_EXIT             "Lopeta"
+  IDS_ACTIVE           "käytössä"
+  IDS_PAUSED           "keskeytetty"
+  IDS_SECONDS          "%lu s"
+  IDS_MINUTES          "%lu min"
+  IDS_CUSTOM           "%s (mukautettu)"
+  IDS_NO_LAYOUT        "Vaihdettavaa näppäimistöasettelua ei löytynyt."
+END
+
+// fr
+LANGUAGE LANG_FRENCH, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Passer à %s maintenant"
+  IDS_DEFAULT_KEYBOARD "Clavier par défaut"
+  IDS_IDLE_TIME        "Délai d’inactivité"
+  IDS_PAUSE            "Pause"
+  IDS_EXIT             "Quitter"
+  IDS_ACTIVE           "actif"
+  IDS_PAUSED           "en pause"
+  IDS_SECONDS          "%lu s"
+  IDS_MINUTES          "%lu min"
+  IDS_CUSTOM           "%s (personnalisé)"
+  IDS_NO_LAYOUT        "Aucune disposition de clavier vers laquelle basculer n’a été trouvée."
+END
+
+// ga
+LANGUAGE LANG_IRISH, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Athraigh go %s anois"
+  IDS_DEFAULT_KEYBOARD "Méarchlár réamhshocraithe"
+  IDS_IDLE_TIME        "Am díomhaoin"
+  IDS_PAUSE            "Cuir ar sos"
+  IDS_EXIT             "Scoir"
+  IDS_ACTIVE           "gníomhach"
+  IDS_PAUSED           "ar sos"
+  IDS_SECONDS          "%lu s"
+  IDS_MINUTES          "%lu nóim."
+  IDS_CUSTOM           "%s (saincheaptha)"
+  IDS_NO_LAYOUT        "Níor aimsíodh leagan amach méarchláir le hathrú chuige."
+END
+
+// hr
+LANGUAGE LANG_CROATIAN, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Prebaci sada na %s"
+  IDS_DEFAULT_KEYBOARD "Zadana tipkovnica"
+  IDS_IDLE_TIME        "Vrijeme neaktivnosti"
+  IDS_PAUSE            "Pauziraj"
+  IDS_EXIT             "Izlaz"
+  IDS_ACTIVE           "aktivno"
+  IDS_PAUSED           "pauzirano"
+  IDS_SECONDS          "%lu s"
+  IDS_MINUTES          "%lu min"
+  IDS_CUSTOM           "%s (prilagođeno)"
+  IDS_NO_LAYOUT        "Nije pronađen raspored tipkovnice na koji se može prebaciti."
+END
+
+// hu
+LANGUAGE LANG_HUNGARIAN, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Váltás most erre: %s"
+  IDS_DEFAULT_KEYBOARD "Alapértelmezett billentyűzet"
+  IDS_IDLE_TIME        "Tétlenségi idő"
+  IDS_PAUSE            "Szüneteltetés"
+  IDS_EXIT             "Kilépés"
+  IDS_ACTIVE           "aktív"
+  IDS_PAUSED           "szüneteltetve"
+  IDS_SECONDS          "%lu mp"
+  IDS_MINUTES          "%lu perc"
+  IDS_CUSTOM           "%s (egyéni)"
+  IDS_NO_LAYOUT        "Nem található billentyűzetkiosztás, amelyre váltani lehetne."
+END
+
+// it
+LANGUAGE LANG_ITALIAN, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Passa ora a %s"
+  IDS_DEFAULT_KEYBOARD "Tastiera predefinita"
+  IDS_IDLE_TIME        "Tempo di inattività"
+  IDS_PAUSE            "Sospendi"
+  IDS_EXIT             "Esci"
+  IDS_ACTIVE           "attivo"
+  IDS_PAUSED           "in pausa"
+  IDS_SECONDS          "%lu s"
+  IDS_MINUTES          "%lu min"
+  IDS_CUSTOM           "%s (personalizzato)"
+  IDS_NO_LAYOUT        "Nessun layout di tastiera trovato a cui passare."
+END
+
+// lt
+LANGUAGE LANG_LITHUANIAN, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Perjungti į %s dabar"
+  IDS_DEFAULT_KEYBOARD "Numatytoji klaviatūra"
+  IDS_IDLE_TIME        "Neveiklumo laikas"
+  IDS_PAUSE            "Pristabdyti"
+  IDS_EXIT             "Išeiti"
+  IDS_ACTIVE           "aktyvi"
+  IDS_PAUSED           "pristabdyta"
+  IDS_SECONDS          "%lu s"
+  IDS_MINUTES          "%lu min."
+  IDS_CUSTOM           "%s (pasirinktinis)"
+  IDS_NO_LAYOUT        "Nerastas klaviatūros išdėstymas, į kurį būtų galima perjungti."
+END
+
+// lv
+LANGUAGE LANG_LATVIAN, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Pārslēgt uz %s tagad"
+  IDS_DEFAULT_KEYBOARD "Noklusējuma tastatūra"
+  IDS_IDLE_TIME        "Dīkstāves laiks"
+  IDS_PAUSE            "Pauzēt"
+  IDS_EXIT             "Iziet"
+  IDS_ACTIVE           "aktīvs"
+  IDS_PAUSED           "pauzēts"
+  IDS_SECONDS          "%lu s"
+  IDS_MINUTES          "%lu min"
+  IDS_CUSTOM           "%s (pielāgots)"
+  IDS_NO_LAYOUT        "Netika atrasts tastatūras izkārtojums, uz kuru pārslēgties."
+END
+
+// mt
+LANGUAGE LANG_MALTESE, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Aqleb għal %s issa"
+  IDS_DEFAULT_KEYBOARD "Tastiera prestabbilita"
+  IDS_IDLE_TIME        "Ħin ta’ inattività"
+  IDS_PAUSE            "Pawża"
+  IDS_EXIT             "Oħroġ"
+  IDS_ACTIVE           "attiv"
+  IDS_PAUSED           "fuq pawża"
+  IDS_SECONDS          "%lu s"
+  IDS_MINUTES          "%lu min"
+  IDS_CUSTOM           "%s (personalizzat)"
+  IDS_NO_LAYOUT        "Ma nstab l-ebda tqassim tat-tastiera biex taqleb għalih."
+END
+
+// nl
+LANGUAGE LANG_DUTCH, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Nu overschakelen naar %s"
+  IDS_DEFAULT_KEYBOARD "Standaardtoetsenbord"
+  IDS_IDLE_TIME        "Inactiviteitstijd"
+  IDS_PAUSE            "Pauzeren"
+  IDS_EXIT             "Afsluiten"
+  IDS_ACTIVE           "actief"
+  IDS_PAUSED           "gepauzeerd"
+  IDS_SECONDS          "%lu s"
+  IDS_MINUTES          "%lu min"
+  IDS_CUSTOM           "%s (aangepast)"
+  IDS_NO_LAYOUT        "Er is geen toetsenbordindeling gevonden om naar over te schakelen."
+END
+
+// nb
+LANGUAGE LANG_NORWEGIAN, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Bytt til %s nå"
+  IDS_DEFAULT_KEYBOARD "Standardtastatur"
+  IDS_IDLE_TIME        "Inaktivitetstid"
+  IDS_PAUSE            "Pause"
+  IDS_EXIT             "Avslutt"
+  IDS_ACTIVE           "aktiv"
+  IDS_PAUSED           "satt på pause"
+  IDS_SECONDS          "%lu s"
+  IDS_MINUTES          "%lu min"
+  IDS_CUSTOM           "%s (egendefinert)"
+  IDS_NO_LAYOUT        "Fant ingen tastaturoppsett å bytte til."
+END
+
+// pl
+LANGUAGE LANG_POLISH, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Przełącz teraz na %s"
+  IDS_DEFAULT_KEYBOARD "Domyślna klawiatura"
+  IDS_IDLE_TIME        "Czas bezczynności"
+  IDS_PAUSE            "Wstrzymaj"
+  IDS_EXIT             "Zakończ"
+  IDS_ACTIVE           "aktywny"
+  IDS_PAUSED           "wstrzymany"
+  IDS_SECONDS          "%lu s"
+  IDS_MINUTES          "%lu min"
+  IDS_CUSTOM           "%s (niestandardowy)"
+  IDS_NO_LAYOUT        "Nie znaleziono układu klawiatury, na który można przełączyć."
+END
+
+// pt
+LANGUAGE LANG_PORTUGUESE, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Mudar agora para %s"
+  IDS_DEFAULT_KEYBOARD "Teclado predefinido"
+  IDS_IDLE_TIME        "Tempo de inatividade"
+  IDS_PAUSE            "Pausar"
+  IDS_EXIT             "Sair"
+  IDS_ACTIVE           "ativo"
+  IDS_PAUSED           "em pausa"
+  IDS_SECONDS          "%lu s"
+  IDS_MINUTES          "%lu min"
+  IDS_CUSTOM           "%s (personalizado)"
+  IDS_NO_LAYOUT        "Não foi encontrado nenhum esquema de teclado para o qual mudar."
+END
+
+// ro
+LANGUAGE LANG_ROMANIAN, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Comută acum la %s"
+  IDS_DEFAULT_KEYBOARD "Tastatură implicită"
+  IDS_IDLE_TIME        "Timp de inactivitate"
+  IDS_PAUSE            "Pauză"
+  IDS_EXIT             "Ieșire"
+  IDS_ACTIVE           "activ"
+  IDS_PAUSED           "în pauză"
+  IDS_SECONDS          "%lu s"
+  IDS_MINUTES          "%lu min"
+  IDS_CUSTOM           "%s (personalizat)"
+  IDS_NO_LAYOUT        "Nu a fost găsit niciun aspect de tastatură la care să se comute."
+END
+
+// sk
+LANGUAGE LANG_SLOVAK, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Prepnúť teraz na %s"
+  IDS_DEFAULT_KEYBOARD "Predvolená klávesnica"
+  IDS_IDLE_TIME        "Čas nečinnosti"
+  IDS_PAUSE            "Pozastaviť"
+  IDS_EXIT             "Ukončiť"
+  IDS_ACTIVE           "aktívne"
+  IDS_PAUSED           "pozastavené"
+  IDS_SECONDS          "%lu s"
+  IDS_MINUTES          "%lu min"
+  IDS_CUSTOM           "%s (vlastné)"
+  IDS_NO_LAYOUT        "Nenašlo sa rozloženie klávesnice, na ktoré by sa dalo prepnúť."
+END
+
+// sl
+LANGUAGE LANG_SLOVENIAN, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Preklopi zdaj na %s"
+  IDS_DEFAULT_KEYBOARD "Privzeta tipkovnica"
+  IDS_IDLE_TIME        "Čas nedejavnosti"
+  IDS_PAUSE            "Začasno ustavi"
+  IDS_EXIT             "Izhod"
+  IDS_ACTIVE           "aktivno"
+  IDS_PAUSED           "začasno ustavljeno"
+  IDS_SECONDS          "%lu s"
+  IDS_MINUTES          "%lu min"
+  IDS_CUSTOM           "%s (po meri)"
+  IDS_NO_LAYOUT        "Ni bilo mogoče najti razporeditve tipkovnice za preklop."
+END
+
+// sv
+LANGUAGE LANG_SWEDISH, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Växla till %s nu"
+  IDS_DEFAULT_KEYBOARD "Standardtangentbord"
+  IDS_IDLE_TIME        "Inaktivitetstid"
+  IDS_PAUSE            "Pausa"
+  IDS_EXIT             "Avsluta"
+  IDS_ACTIVE           "aktiv"
+  IDS_PAUSED           "pausad"
+  IDS_SECONDS          "%lu s"
+  IDS_MINUTES          "%lu min"
+  IDS_CUSTOM           "%s (anpassad)"
+  IDS_NO_LAYOUT        "Ingen tangentbordslayout att växla till hittades."
+END
+
+// uk
+LANGUAGE LANG_UKRAINIAN, SUBLANG_NEUTRAL
+STRINGTABLE
+BEGIN
+  IDS_SWITCH_NOW       "Перемкнути зараз на %s"
+  IDS_DEFAULT_KEYBOARD "Типова клавіатура"
+  IDS_IDLE_TIME        "Час бездіяльності"
+  IDS_PAUSE            "Пауза"
+  IDS_EXIT             "Вихід"
+  IDS_ACTIVE           "активно"
+  IDS_PAUSED           "призупинено"
+  IDS_SECONDS          "%lu с"
+  IDS_MINUTES          "%lu хв"
+  IDS_CUSTOM           "%s (власне)"
+  IDS_NO_LAYOUT        "Не знайдено розкладки клавіатури для перемикання."
+END

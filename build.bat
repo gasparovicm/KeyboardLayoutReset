@@ -15,7 +15,7 @@ if not exist bin mkdir bin
 if not exist obj mkdir obj
 rc /nologo /fo obj\app.res src\app.rc || exit /b 1
 cl /nologo /O2 /W4 /MT /Foobj\ /Fe:bin\KeyboardLayoutReset.exe src\main.c obj\app.res ^
-   /link /SUBSYSTEM:WINDOWS user32.lib shell32.lib || exit /b 1
+   /link /SUBSYSTEM:WINDOWS user32.lib shell32.lib shlwapi.lib advapi32.lib || exit /b 1
 echo Built bin\KeyboardLayoutReset.exe
 
 rem Installer: needs Inno Setup 6 (https://jrsoftware.org/isinfo.php).

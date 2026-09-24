@@ -1,0 +1,2 @@
+# rc.exe needs UTF-16 for non-Latin text; store as UTF-8 so diffs stay readable.
+src/strings.rc text working-tree-encoding=UTF-16LE-BOM eol=crlf

@@ -25,14 +25,14 @@ The setup asks for:
 - **Idle time**: seconds without input before switching. The default is `60`.
 - **Start when I sign in**: adds a shortcut to your Startup folder.
 
-To change the settings later, run the setup again. It remembers your previous
-choices and restarts the app with the new ones. Uninstall it from
+You can change both settings later from the tray icon menu (see below).
+Running setup again also works; it starts with your current settings. Uninstall it from
 _Settings → Apps → Installed apps_.
 
 Silent install, for scripts:
 
 ```
-KeyboardLayoutReset-Setup-0.3.0.exe /SILENT /LAYOUT=en-US /IDLE=60
+KeyboardLayoutReset-Setup-0.4.0.exe /SILENT /LAYOUT=en-US /IDLE=60
 ```
 
 ## How it works
@@ -44,13 +44,48 @@ KeyboardLayoutReset-Setup-0.3.0.exe /SILENT /LAYOUT=en-US /IDLE=60
   `WM_INPUTLANGCHANGEREQUEST` with that layout to the window.
 - It prefers a layout already in your language list, so it doesn't add
   layouts you don't have.
-- The tray icon shows the default keyboard and idle time on hover. Its menu has
-  **Switch to … now**, **Pause** and **Exit**. Only one copy runs at a time.
+- Only one copy runs at a time.
+
+## Tray menu
+
+Hovering over the tray icon shows the default keyboard and the idle time.
+Clicking it opens the menu:
+
+- **Switch to … now**: switches the window you were in right away.
+- **Default keyboard ▸**: lists your installed keyboards. Pick the one to
+  switch back to.
+- **Idle time ▸**: 15 s, 30 s, 1, 2, 5 or 10 minutes. A value set in setup or
+  on the command line that isn't in this list is shown as "(custom)".
+- **Pause**: stops switching until you click it again.
+- **Exit**
+
+Changes apply immediately and are saved per user in
+`HKCU\Software\KeyboardLayoutReset` (`Layout`, `IdleSeconds`). The installer
+writes the same values.
+
+## Languages
+
+The tray menu and messages follow your Windows display language:
+
+Bulgarian, Croatian, Czech, Danish, Dutch, English, Estonian, Finnish, French,
+German, Greek, Hungarian, Irish, Italian, Latvian, Lithuanian, Maltese,
+Norwegian, Polish, Portuguese, Romanian, Slovak, Slovenian, Spanish, Swedish
+and Ukrainian. Other languages fall back to English. Keyboard names come from
+Windows itself, so they are always in your display language.
+
+The installer is translated into all of these except Croatian, Estonian, Greek,
+Irish, Latvian, Lithuanian, Maltese and Romanian. Inno Setup has no built-in
+translation for those, so setup shows a language choice there.
+
+To add or fix a translation, edit `src\strings.rc` for the app and the
+`[CustomMessages]` section of `installer\KeyboardLayoutReset.iss` for setup.
+Keep the `%s`, `%lu` and `%1` placeholders.
 
 ## Options
 
-The installer passes these for you. You can also run the exe directly with
-them.
+Normally you don't need these, because the tray menu and setup store the
+settings. When you do pass them, `--layout` and `--idle` override the saved
+settings for that run only.
 
 ```
 KeyboardLayoutReset.exe [--layout LAYOUT] [--idle SECONDS] [--check SECONDS]
@@ -131,12 +166,13 @@ This produces `bin\KeyboardLayoutReset.exe`, built with the static runtime (`/MT
 if Inno Setup is installed, `dist\KeyboardLayoutReset-Setup-<version>.exe`. The version
 comes from `src\app.rc`.
 
-| Path                        | What it is                |
-| --------------------------- | ------------------------- |
-| `src\main.c`                | The app                   |
-| `src\app.rc`, `src\app.ico` | Version info and icon     |
+| Path                                | What it is                |
+| ----------------------------------- | ------------------------- |
+| `src\main.c`                        | The app                   |
+| `src\app.rc`, `src\app.ico`         | Version info and icon     |
+| `src\strings.rc`                    | Translated UI text        |
 | `installer\KeyboardLayoutReset.iss` | Inno Setup script         |
-| `tools\make-icon.ps1`       | Regenerates `src\app.ico` |
+| `tools\make-icon.ps1`               | Regenerates `src\app.ico` |
 
 ## Alternatives
 
