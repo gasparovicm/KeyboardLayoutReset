@@ -3,8 +3,8 @@
   MSIX manifest for the Microsoft Store. Built by packaging\make-msix.ps1,
   which fills in {VERSION} from the exe.
 
-  TODO: replace the three PLACEHOLDER values with the ones from Partner Center
-  (Apps and games > KeyboardLayoutReset > Product identity) before uploading.
+  Identity and PublisherDisplayName must match Partner Center exactly
+  (Apps and games > KeyboardLayoutReset > Product identity).
 -->
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
@@ -14,14 +14,14 @@
   IgnorableNamespaces="uap desktop rescap">
 
   <Identity
-    Name="PLACEHOLDER.KeyboardLayoutReset"
-    Publisher="CN=PLACEHOLDER"
+    Name="MartinGaparovi.KeyboardLayoutReset"
+    Publisher="CN=5D65E236-1DE6-4826-9A4B-C6C5921290F0"
     Version="{VERSION}"
     ProcessorArchitecture="x64" />
 
   <Properties>
-    <DisplayName>Keyboard Layout Reset</DisplayName>
-    <PublisherDisplayName>PLACEHOLDER</PublisherDisplayName>
+    <DisplayName>KeyboardLayoutReset</DisplayName>
+    <PublisherDisplayName>Martin Gašparovič</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -39,7 +39,7 @@
   <Applications>
     <Application Id="KeyboardLayoutReset" Executable="KeyboardLayoutReset.exe" EntryPoint="Windows.FullTrustApplication">
       <uap:VisualElements
-        DisplayName="Keyboard Layout Reset"
+        DisplayName="KeyboardLayoutReset"
         Description="Switches the keyboard back to English (or another default keyboard) after you stop using the computer for a while."
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"
@@ -49,7 +49,7 @@
              once the app has been opened; users can turn it off in
              Task Manager > Startup apps. -->
         <desktop:Extension Category="windows.startupTask" Executable="KeyboardLayoutReset.exe" EntryPoint="Windows.FullTrustApplication">
-          <desktop:StartupTask TaskId="KeyboardLayoutResetStartup" Enabled="true" DisplayName="Keyboard Layout Reset" />
+          <desktop:StartupTask TaskId="KeyboardLayoutResetStartup" Enabled="true" DisplayName="KeyboardLayoutReset" />
         </desktop:Extension>
       </Extensions>
     </Application>
