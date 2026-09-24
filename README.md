@@ -74,13 +74,28 @@ The output is `bin\LayoutReset.exe`, built with the static runtime (`/MT`).
 Existing tools that do something similar:
 
 - [Keyboard Auto Switcher](https://apps.microsoft.com/detail/9pcpx2n2r4lk)
-  (Microsoft Store). A tray app that returns to your default layout after a
-  timeout. This is the closest match.
-- [SwitchLang](https://github.com/Bumblebee621/SwitchLang). Automatic
-  English/Hebrew switcher with an idle-based reset.
+  (Microsoft Store). Closest match. You press a hotkey to switch to your second
+  layout, and after a timeout it switches back to your default layout. A tray
+  icon shows the current layout. The timer starts from the hotkey, not from
+  idle time, and switching with Win+Space or the taskbar may not start it.
+- [OneKey Layout Switcher](https://apps.microsoft.com/detail/9nzvl338pldv)
+  (Microsoft Store). Switches layouts with a single key. It has no automatic
+  reset.
+- [SwitchLang](https://github.com/Bumblebee621/SwitchLang). Real-time
+  English/Hebrew auto-switcher. It resets context after 15 s without typing.
+- [KeyboardSwitcher](https://github.com/kertser/KeyboardSwitcher). Guesses the
+  language you are typing (Hebrew, English, Russian) with an ONNX model and
+  switches to it.
+- [KeyLayoutAutoSwitch](https://github.com/AlexVallat/KeyLayoutAutoSwitch).
+  Browser extension that switches the layout by focused field or website.
 - [RightKeyboard](https://github.com/gmcouto/RightKeyboard). Picks a layout per
   keyboard device.
 - [keyboard-layout-switcher](https://github.com/Gaeritag/keyboard-layout-switcher).
   Picks a layout by keyboard hardware ID.
+- [one-key-keyboard-switcher](https://github.com/asilichenko/one-key-keyboard-switcher).
+  Switches layouts with a single key.
+- [ahk-layout-switch](https://github.com/shokurov/ahk-layout-switch).
+  AutoHotkey script that shows the layout under the caret and cycles layouts
+  macOS-style.
 
 LayoutReset exists to be tiny, open, and do only this one job.
