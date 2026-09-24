@@ -195,6 +195,7 @@ exactly.
 | `installer\KeyboardLayoutReset.iss` | Inno Setup script              |
 | `packaging\AppxManifest.xml`        | MSIX manifest (Store)          |
 | `packaging\make-msix.ps1`           | Packs the MSIX                 |
+| `packaging\StoreArt\`               | Store listing icons            |
 | `tools\make-icon.ps1`               | Regenerates the icon and logos |
 
 ## Alternatives

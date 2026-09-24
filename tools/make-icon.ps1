@@ -85,3 +85,14 @@ foreach ($logo in @(@('StoreLogo', 50), @('Square44x44Logo', 44), @('Square150x1
     $bmp.Dispose()
 }
 Write-Host "Wrote $assets"
+
+# Store listing icons (uploaded in Partner Center under Store listings > Store
+# logos, not part of the package): 300x300, 150x150 and 71x71.
+$art = Join-Path $PSScriptRoot '..\packaging\StoreArt'
+New-Item -ItemType Directory -Force $art | Out-Null
+foreach ($s in 300, 150, 71) {
+    $bmp = Render-Icon $s
+    $bmp.Save((Join-Path $art "StoreIcon-${s}x${s}.png"), [System.Drawing.Imaging.ImageFormat]::Png)
+    $bmp.Dispose()
+}
+Write-Host "Wrote $art"
