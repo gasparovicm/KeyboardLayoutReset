@@ -1,6 +1,7 @@
-# Draws the app icon and writes src\app.ico: a white keyboard on a blue key,
-# with a "reset" arrow badge. Each size is rendered separately so small sizes
-# stay sharp. Glyphs come from the Segoe Fluent Icons font (Windows 11).
+# Draws the app icon: a white keyboard on a blue key, with a "reset" arrow
+# badge. Writes src\app.ico and the MSIX logos in packaging\Assets. Each size
+# is rendered separately so small sizes stay sharp. Glyphs come from the Segoe
+# Fluent Icons font (Windows 11).
 Add-Type -AssemblyName System.Drawing
 
 $sizes = 16, 20, 24, 32, 40, 48, 64, 256
@@ -19,8 +20,7 @@ function Draw-Glyph($g, $glyph, $px, $color, $x, $y, $w, $h) {
     $g.DrawString($glyph, $font, $brush, (New-Object System.Drawing.RectangleF $x, $y, $w, $h), $fmt)
 }
 
-$pngs = @()
-foreach ($s in $sizes) {
+function Render-Icon($s) {
     $bmp = New-Object System.Drawing.Bitmap $s, $s
     $g = [System.Drawing.Graphics]::FromImage($bmp)
     $g.SmoothingMode = 'AntiAlias'
@@ -47,10 +47,17 @@ foreach ($s in $sizes) {
     $g.FillEllipse([System.Drawing.Brushes]::White, $s - $d, $s - $d, $d, $d)
     Draw-Glyph $g $reset ($d * 0.62) $blue ($s - $d) ($s - $d + $d * 0.03) $d $d
 
+    $g.Dispose()
+    $bmp
+}
+
+$pngs = @()
+foreach ($s in $sizes) {
+    $bmp = Render-Icon $s
     $ms = New-Object System.IO.MemoryStream
     $bmp.Save($ms, [System.Drawing.Imaging.ImageFormat]::Png)
     $pngs += , $ms.ToArray()
-    $g.Dispose(); $bmp.Dispose()
+    $bmp.Dispose()
 }
 
 # ICO container with PNG-compressed entries (supported since Windows Vista).
@@ -68,3 +75,13 @@ for ($i = 0; $i -lt $sizes.Count; $i++) {
 foreach ($p in $pngs) { $bw.Write($p) }
 $bw.Close()
 Write-Host "Wrote $out"
+
+# MSIX logos (names referenced by packaging\AppxManifest.xml).
+$assets = Join-Path $PSScriptRoot '..\packaging\Assets'
+New-Item -ItemType Directory -Force $assets | Out-Null
+foreach ($logo in @(@('StoreLogo', 50), @('Square44x44Logo', 44), @('Square150x150Logo', 150))) {
+    $bmp = Render-Icon $logo[1]
+    $bmp.Save((Join-Path $assets ($logo[0] + '.png')), [System.Drawing.Imaging.ImageFormat]::Png)
+    $bmp.Dispose()
+}
+Write-Host "Wrote $assets"

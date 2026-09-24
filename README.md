@@ -166,13 +166,35 @@ This produces `bin\KeyboardLayoutReset.exe`, built with the static runtime (`/MT
 if Inno Setup is installed, `dist\KeyboardLayoutReset-Setup-<version>.exe`. The version
 comes from `src\app.rc`.
 
-| Path                                | What it is                |
-| ----------------------------------- | ------------------------- |
-| `src\main.c`                        | The app                   |
-| `src\app.rc`, `src\app.ico`         | Version info and icon     |
-| `src\strings.rc`                    | Translated UI text        |
-| `installer\KeyboardLayoutReset.iss` | Inno Setup script         |
-| `tools\make-icon.ps1`               | Regenerates `src\app.ico` |
+### Microsoft Store package (MSIX)
+
+`build.bat` also creates `dist\KeyboardLayoutReset-<version>.0.msix` for the
+Microsoft Store, using `makeappx` from the Windows SDK. The package is
+unsigned, because the Store signs it after certification. That also means it
+can't be installed locally by double-clicking; use the Inno Setup installer for
+that.
+
+The Store version works without the installer:
+
+- Settings are changed from the tray menu.
+- Autostart is a startup task declared in the package. Windows turns it on after
+  the app is opened once, and it can be switched off in _Task Manager → Startup
+  apps_.
+
+Before the first upload, replace the three `PLACEHOLDER` values in
+`packaging\AppxManifest.xml` with the ones from Partner Center (_Apps and games
+→ KeyboardLayoutReset → Product identity_). Until then, the build prints a
+warning.
+
+| Path                                | What it is                     |
+| ----------------------------------- | ------------------------------ |
+| `src\main.c`                        | The app                        |
+| `src\app.rc`, `src\app.ico`         | Version info and icon          |
+| `src\strings.rc`                    | Translated UI text             |
+| `installer\KeyboardLayoutReset.iss` | Inno Setup script              |
+| `packaging\AppxManifest.xml`        | MSIX manifest (Store)          |
+| `packaging\make-msix.ps1`           | Packs the MSIX                 |
+| `tools\make-icon.ps1`               | Regenerates the icon and logos |
 
 ## Alternatives
 

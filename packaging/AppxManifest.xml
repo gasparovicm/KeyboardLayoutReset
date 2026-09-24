@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  MSIX manifest for the Microsoft Store. Built by packaging\make-msix.ps1,
+  which fills in {VERSION} from the exe.
+
+  TODO: replace the three PLACEHOLDER values with the ones from Partner Center
+  (Apps and games > KeyboardLayoutReset > Product identity) before uploading.
+-->
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap desktop rescap">
+
+  <Identity
+    Name="PLACEHOLDER.KeyboardLayoutReset"
+    Publisher="CN=PLACEHOLDER"
+    Version="{VERSION}"
+    ProcessorArchitecture="x64" />
+
+  <Properties>
+    <DisplayName>Keyboard Layout Reset</DisplayName>
+    <PublisherDisplayName>PLACEHOLDER</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.26100.0" />
+  </Dependencies>
+
+  <!-- Store listing languages. The app itself picks its UI language from
+       Windows (26 languages); add a language here only together with a Store
+       listing for it in Partner Center. -->
+  <Resources>
+    <Resource Language="en-us" />
+  </Resources>
+
+  <Applications>
+    <Application Id="KeyboardLayoutReset" Executable="KeyboardLayoutReset.exe" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements
+        DisplayName="Keyboard Layout Reset"
+        Description="Switches the keyboard back to English (or another default keyboard) after you stop using the computer for a while."
+        BackgroundColor="transparent"
+        Square150x150Logo="Assets\Square150x150Logo.png"
+        Square44x44Logo="Assets\Square44x44Logo.png" />
+      <Extensions>
+        <!-- Replaces the installer's Startup-folder shortcut. Starts at sign-in
+             once the app has been opened; users can turn it off in
+             Task Manager > Startup apps. -->
+        <desktop:Extension Category="windows.startupTask" Executable="KeyboardLayoutReset.exe" EntryPoint="Windows.FullTrustApplication">
+          <desktop:StartupTask TaskId="KeyboardLayoutResetStartup" Enabled="true" DisplayName="Keyboard Layout Reset" />
+        </desktop:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
+</Package>

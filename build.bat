@@ -18,6 +18,9 @@ cl /nologo /O2 /W4 /MT /Foobj\ /Fe:bin\KeyboardLayoutReset.exe src\main.c obj\ap
    /link /SUBSYSTEM:WINDOWS user32.lib shell32.lib shlwapi.lib advapi32.lib || exit /b 1
 echo Built bin\KeyboardLayoutReset.exe
 
+rem Microsoft Store package (MSIX); needs the Windows SDK.
+powershell -NoProfile -ExecutionPolicy Bypass -File packaging\make-msix.ps1 || exit /b 1
+
 rem Installer: needs Inno Setup 6 (https://jrsoftware.org/isinfo.php).
 set "ISCC=%ProgramFiles(x86)%\Inno Setup 6\ISCC.exe"
 if not exist "%ISCC%" set "ISCC=%LOCALAPPDATA%\Programs\Inno Setup 6\ISCC.exe"
