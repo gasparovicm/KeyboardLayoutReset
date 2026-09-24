@@ -1,0 +1,22 @@
+// Resource id 1 is the tray icon; the exe falls back to the default
+// application icon when no icon file is added here.
+// 1 ICON "app.ico"
+
+1 VERSIONINFO
+FILEVERSION 0,1,0,0
+PRODUCTVERSION 0,1,0,0
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904b0"
+    BEGIN
+      VALUE "FileDescription", "LayoutReset - switch keyboard back to English when idle"
+      VALUE "ProductName", "LayoutReset"
+      VALUE "FileVersion", "0.1.0"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 1200
+  END
+END
